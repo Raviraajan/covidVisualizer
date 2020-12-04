@@ -1,0 +1,478 @@
+
+<html>
+<head>	
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	
+
+<style>
+
+#stateWise{
+
+	color:black;
+	margin-left:100%;
+	margin-right:50%;
+	font-weight: 500;
+	
+}
+
+#canvasEx{
+	width:50%;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#canvasEx2{
+	width:50%;
+	margin-left:auto;
+	margin-right:auto;
+	
+}
+
+#canvasEx3{
+	width:50%;
+}
+
+#canvasEx4{
+	width:50%;
+}
+
+.stateLabel{
+	max-width:100%;
+	white-space:nowrap;
+}
+
+#myChart4{	
+	margin:0 auto;
+	margin-left:55%;
+}
+#summary_7{
+	margin-left:34%;
+	margin-right:0%;
+	font-weight: 500;
+}
+
+.figures{
+	color:red;
+}
+</style>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.css"></link>
+
+<script type="text/javascript" src="./covid.js"></script>
+
+</head>
+
+<body onload="renderData()">
+	  <nav class="navbar navbar-dark" style="background-color:black;height:10%;">
+		<span style="font-weight: 700;color: white; font-size: large; margin-left: auto;margin-right: auto;">Coronavirus Digital Content Maker<span>
+	  </nav>
+	<h4 style="margin-top:1.5%; margin-left:35%;margin-right:35%">The data powering these modules comes from <a href="https://covidtracking.com/data/api">here</a></h4>
+
+	<h5 style="margin-top:1.5%; margin-left:35%;margin-right:35%">Download the scripts and templates to make these modules on our <a href="https://github.com/nervecentergarage/structured-journalism-developer-community">github</a></h5>
+
+<hr>
+
+	<table id="data_table" style="display:none">
+	
+	
+	
+	</table>
+
+
+<table style="margin-left:42.5%; margin-top:2%" id="para">
+<tr>
+	<td class="stateLabel">
+		<label>Choose a State:</label>
+	</td>	
+	<td>
+		<select id="stateName" onchange="getStateData(); showVisulizations()"></select>
+	</td>	
+</tr>
+</table>
+<br>
+<br>
+<table>
+<tr>	
+	<td class="stateLabel">
+		<div id="stateWise">
+		</div>
+	</td>
+</tr>	
+</table>
+
+
+
+<table style="margin-left: auto; margin-right: auto;">
+	<tr>
+		<td>
+			<!--<button class="btn btn-primary" onclick="showVisulizations()" style="margin-left:40%">Visualize</button>-->
+		</td>
+		<td>
+			<!--<button class="btn btn-primary" style="margin-top:10%; margin-left:30%" onclick="activateWorldWide()">Total Cases Visualization</button>-->
+		</td>
+		<td>
+			<!--<button class="btn btn-primary" style="margin-top:10%; margin-left:30%" onclick="compareStatesActivate()">Compare States</button>-->
+		</td>
+	</tr>
+</table>
+
+<br>
+<h4 style="margin-left:45%">Graphs for use in content</h4>
+
+<div id="canvasEx4">
+	<canvas id="myChart4" style="display:block"></canvas>
+</div>
+<div id="summary_7">
+
+</div>	
+
+<!--<canvas id="myChart" style="display: block; width: 1000px; height: 707px;" width="1000" height="800" class="chartjs-render-monitor"></canvas>-->
+<hr>
+<br>
+<h3 style="margin-left:48%">Total Cases</h3>
+<br>
+
+<div id="canvasEx">
+	<canvas id="myChart" style="display:block"></canvas>
+</div>
+
+<table id="fromToDate" style="margin-left:35%; margin-right:30%; display:block; float:left">
+	<tr>
+		<td>
+			<label>Start Date:</label>
+		</td>
+		<td>		
+			<input type="date" id="startDateTime" min="2020-01-27"/>		
+		</td>	
+		<td>
+			<label>End Date:</label>
+		</td>
+		<td>
+			<input type="date" id="endDateTime" min="2020-01-28" max=""/>
+		</td>	
+		<td>
+			<button onclick="pickTwoDates()" class="btn btn-primary">Plot</button>
+		</td>	
+	</tr>	
+	</table>
+
+<div id="canvasEx2">
+	<canvas id="myChart2" style="display:block"></canvas>
+</div>
+
+
+	
+	
+	<table id="pastFewDays" style="margin-left:45%;display:block">
+	<tr>
+		<td>
+			<button onclick="lastXDays(7)" class="btn btn-primary">Past 7 Days</button>
+		</td>
+		<td>
+			<button onclick="lastXDays(30)" class="btn btn-danger">Past 30 Days</button>
+		</td>
+	</tr>
+	</table>
+	
+<hr>
+<br>
+<h4 style="margin-left:48%">Compare States</h4>	
+<br>
+<div id="canvasEx3">
+	<canvas id="myChart3" style="display:block; margin-left:53%"></canvas>
+</div>
+
+<table id="compareStatesTable" style="display:block; margin-left: 40%">
+	<tr>
+		<td>
+			<label>State-1</label>
+		</td>
+		<td>	
+			<select id="firstState">
+			</select>
+			<!--<input type="text" id="firstState" placeholder="State-1"/>-->
+		</td>	
+	</tr>
+	
+	<tr>
+		<td>
+			<label>State-2</label>
+		</td>
+		<td>
+			<select id="secondState">
+			</select>
+			
+		</td>
+	</tr>
+	
+	<tr>
+		<td>
+			<label>Start Date</label>
+		</td>
+		<td>
+			<input type="date" id="cStartDate" min="2020-01-28" max="">
+		</td>	
+	</tr>
+	<tr>
+		<td>
+			<label>End Date</label>
+		</td>
+		<td>
+			<input type="date" id="cEndDate" min="2020-01-28" max="">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<button onclick="compareStates()" class="btn btn-danger">Compare States</button>
+		</td>
+	</tr>
+	
+	</table>
+	
+
+<div id="canvasEx4">
+	<canvas id="myChart4" style="display:none"></canvas>
+</div>
+<hr>
+
+<h4 style="margin-left:45%">Related Media</h4>
+<br>
+<div id="yt" style="margin-left:35%;margin-right:30%">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rLNH-jHfQZg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br>
+<br>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xDJH0O-N_L8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+<script>
+
+var ctx = document.getElementById('myChart');
+var ctx2 = document.getElementById('myChart2');
+var ctx3 = document.getElementById('myChart3');
+var ctx4 = document.getElementById('myChart4');
+config = {
+			type: 'line',
+			data: {
+				labels: [],
+				datasets: [{
+					label: 'Total Cases',
+					backgroundColor: 'rgb(123,104,238)',
+					borderColor: 'rgb(123,104,238)',
+					data: [
+						
+					],
+					fill: true,
+				},				
+				]
+			},
+			options: {
+				responsive: true,
+				title: {
+					display: true,
+					text: 'USA'
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Date'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Cases'
+						}
+					}]
+				}
+			}
+		};
+		
+config2 = {
+			type: 'line',
+			data: {
+				labels: [],
+				datasets: [{
+					label: 'Cases',
+					backgroundColor: 'rgb(123,104,238)',
+					borderColor: 'rgb(123,104,238)',
+					data: [
+						
+					],
+					fill: true,
+				},				
+				]
+			},
+			options: {
+				responsive: true,
+				title: {
+					display: true,
+					text: 'Line Chart'
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Date'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Cases'
+						}
+					}]
+				}
+			}
+		};	
+config3 = {
+			type: 'line',
+			data: {
+				labels: [],
+				datasets: [{
+					label: '',
+					backgroundColor: 'rgb(123,104,238)',
+					borderColor: 'rgb(123,104,238)',
+					data: [
+						
+					],
+					fill: false,
+				},	
+				{
+					label: '',
+					backgroundColor: 'rgb(250, 1, 10)',
+					borderColor: 'rgb(250, 1, 10)',
+					data: [
+						
+					],
+					fill: false,
+				}			
+				]
+			},
+			options: {
+				responsive: true,
+				title: {
+					display: true,
+					text: 'States Comparison'
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Date'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Cases'
+						}
+					}]
+				}
+			}
+		};		
+		
+config4 = {
+			type: 'line',
+			data: {
+				labels: [],
+				datasets: [{
+					label: 'Cases',
+					backgroundColor: 'rgb(123,104,238)',
+					borderColor: 'rgb(123,104,238)',
+					data: [
+						
+					],
+					fill: true,
+				},				
+				]
+			},
+			options: {
+				responsive: true,
+				title: {
+					display: true,
+					text: 'Line Chart'
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Date'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Cases'
+						}
+					}]
+				}
+			}
+		};		
+
+myLineChart = new Chart(ctx, config);
+myLineChart2 = new Chart(ctx2,config2);
+myLineChart3 = new Chart(ctx3,config3);
+myLineChart4 = new Chart(ctx4,config4);
+
+</script>
+
+
+
+<br>
+<br>
+<br>
+</body>
+
+
+</html>

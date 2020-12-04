@@ -108,6 +108,16 @@ async function showVisulizations(){
 	config4.options.title.text=`Past 7 Day Cases in ${stateName}`;
 	config4.data.labels=newDateLabel;
 	config4.data.datasets[0].data=newCasesLabel;
+	
+	var percentageIncrease = (newCasesLabel[newCasesLabel.length-1]-newCasesLabel[0])*100/newCasesLabel[0];
+	if(percentageIncrease<0){
+		percentageIncrease*=-1;
+		document.getElementById("summary_7").innerHTML=`Over the past week the percentage decrease in cases in ${dictionaryData[stateName]} has been <span class="figures">${percentageIncrease.toPrecision(3)}%</span>`	;
+	}
+	else{
+		document.getElementById("summary_7").innerHTML=`Over the past week the percentage increase in cases in ${dictionaryData[stateName]} has been <span class="figures">${percentageIncrease.toPrecision(3)}%</span>`	;
+	}
+	
 	myLineChart4.update();	
 
 	/*

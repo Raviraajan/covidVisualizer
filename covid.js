@@ -60,6 +60,68 @@ function initStateData(){
 	dictionaryData["WY"]="Wyoming";
 }
 
+function compareStatesActivate(){
+	
+	document.getElementById("myChart3").style.display="block";	
+	document.getElementById("compareStatesTable").style.display="block";	
+
+	
+	document.getElementById("myChart").style.display="None";	
+	document.getElementById("myChart2").style.display="None";	
+	document.getElementById("pastFewDays").style.display="None";	
+	document.getElementById("fromToDate").style.display="None";	
+	document.getElementById("myChart4").style.display="None";
+}
+
+function activateWorldWide(){
+
+	document.getElementById("myChart4").style.display="None";
+	document.getElementById("myChart3").style.display="None";	
+	document.getElementById("compareStatesTable").style.display="None";	
+	document.getElementById("myChart").style.display="block";	
+	document.getElementById("myChart2").style.display="block";	
+
+	document.getElementById("pastFewDays").style.display="block";	
+	document.getElementById("fromToDate").style.display="block";	
+	
+}
+
+async function showVisulizations(){
+	var stateName = document.getElementById("stateName").value;
+	var jsonData = await getStateHistoricData(stateName);
+	var stateDateLabel=[];
+	var stateCasesLabel=[];
+	
+	jsonData.forEach(element=>{
+		stateDateLabel.push(element["date"]);
+		stateCasesLabel.push(element["positive"]);
+	});
+	console.log(stateCasesLabel);
+	stateDateLabel.reverse();
+	stateCasesLabel.reverse();
+
+	var newDateLabel = stateDateLabel.slice(stateDateLabel.length-8,stateDateLabel.length-1);
+	var newCasesLabel = stateCasesLabel.slice(stateCasesLabel.length-8,stateCasesLabel.length-1);
+
+	console.log(newCasesLabel);
+
+	config4.options.title.text=`Past 7 Day Cases in ${stateName}`;
+	config4.data.labels=newDateLabel;
+	config4.data.datasets[0].data=newCasesLabel;
+	myLineChart4.update();	
+
+
+	document.getElementById("myChart3").style.display="None";	
+	document.getElementById("myChart").style.display="None";	
+	document.getElementById("myChart2").style.display="None";	
+	document.getElementById("compareStatesTable").style.display="None";	
+	document.getElementById("pastFewDays").style.display="None";	
+	document.getElementById("fromToDate").style.display="None";	
+	document.getElementById("myChart4").style.display="block";
+
+
+}
+
 async function getData(){
 
 	
@@ -236,7 +298,7 @@ function lastXDays(X){
 	console.log(casesArray);
 	
 	
-	config2.options.title.text=`${X} Day Cases`;
+	config2.options.title.text=`Past ${X} Day Cases`;
 	config2.data.labels=newDateLabelArray;
 	config2.data.datasets[0].data=newCasesArray;
 	myLineChart2.update();	

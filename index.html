@@ -17,7 +17,7 @@
 #stateWise{
 
 	color:black;
-	margin-left:45%;
+	margin-left:90%;
 	margin-right:25%;
 	font-weight: 500;
 	
@@ -25,12 +25,15 @@
 
 #canvasEx{
 	width:50%;
-	float:left;
+	margin-left:auto;
+	margin-right:auto;
 }
 
 #canvasEx2{
 	width:50%;
-	float:right;
+	margin-left:auto;
+	margin-right:auto;
+	
 }
 
 #canvasEx3{
@@ -130,11 +133,7 @@
 	<canvas id="myChart" style="display:block"></canvas>
 </div>
 
-<div id="canvasEx2">
-	<canvas id="myChart2" style="display:block"></canvas>
-</div>
-
-<table id="fromToDate" style="margin-left:10%; margin-right:30%; display:block; float:left">
+<table id="fromToDate" style="margin-left:35%; margin-right:30%; display:block; float:left">
 	<tr>
 		<td>
 			<label>Start Date:</label>
@@ -153,9 +152,15 @@
 		</td>	
 	</tr>	
 	</table>
+
+<div id="canvasEx2">
+	<canvas id="myChart2" style="display:block"></canvas>
+</div>
+
+
 	
 	
-	<table id="pastFewDays" style="margin-left:74%;display:block">
+	<table id="pastFewDays" style="margin-left:45%;display:block">
 	<tr>
 		<td>
 			<button onclick="lastXDays(7)" class="btn btn-primary">Past 7 Days</button>

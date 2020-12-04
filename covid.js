@@ -63,8 +63,8 @@ function initStateData(){
 async function getData(){
 
 	
-	//var endpoint = "https://api.covidtracking.com/v1/us/daily.json";
-	var endpoint = "http://localhost:5000/getAllData"
+	var endpoint = "https://api.covidtracking.com/v1/us/daily.json";
+	//var endpoint = "http://localhost:5000/getAllData"
 	var data = await fetch(endpoint);
 	data = await data.json();
 	

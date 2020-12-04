@@ -17,7 +17,7 @@
 #stateWise{
 
 	color:black;
-	margin-left:25%;
+	margin-left:45%;
 	margin-right:25%;
 	font-weight: 500;
 	
@@ -41,14 +41,14 @@
 	width:50%;
 }
 
-#stateLabel{
+.stateLabel{
 	max-width:100%;
 	white-space:nowrap;
 }
 
 #myChart4{	
 	margin:0 auto;
-	margin-left:50%;
+	margin-left:55%;
 }
 
 </style>
@@ -76,21 +76,28 @@
 	</table>
 
 
-<table style="margin-left:30%; margin-top:2%" id="para">
+<table style="margin-left:42.5%; margin-top:2%" id="para">
 <tr>
-	<td id="stateLabel">
+	<td class="stateLabel">
 		<label>Choose a State:</label>
 	</td>	
 	<td>
 		<select id="stateName" onchange="getStateData(); showVisulizations()"></select>
 	</td>	
-	
-	<td>
+</tr>
+</table>
+<br>
+<br>
+<table>
+<tr>	
+	<td class="stateLabel">
 		<div id="stateWise">
 		</div>
 	</td>
 </tr>	
 </table>
+
+
 
 <table style="margin-left: auto; margin-right: auto;">
 	<tr>
@@ -105,9 +112,9 @@
 		</td>
 	</tr>
 </table>
-</br>
 
-<h4 style="margin-left:20%">Past 7 days data</h4>
+<br>
+<h4 style="margin-left:48%">Past 7 days data</h4>
 
 <div id="canvasEx4">
 	<canvas id="myChart4" style="display:block"></canvas>
@@ -115,7 +122,8 @@
 
 <!--<canvas id="myChart" style="display: block; width: 1000px; height: 707px;" width="1000" height="800" class="chartjs-render-monitor"></canvas>-->
 <hr>
-<h3 style="margin-left:20%">Total Cases</h3>
+<br>
+<h3 style="margin-left:48%">Total Cases</h3>
 <br>
 
 <div id="canvasEx">
@@ -159,10 +167,11 @@
 	</table>
 	
 <hr>
-<h4 style="margin-left:20%">Compare States</h4>	
+<br>
+<h4 style="margin-left:48%">Compare States</h4>	
 <br>
 <div id="canvasEx3">
-	<canvas id="myChart3" style="display:block; margin-left:45%"></canvas>
+	<canvas id="myChart3" style="display:block; margin-left:53%"></canvas>
 </div>
 
 <table id="compareStatesTable" style="display:block; margin-left: 40%">
@@ -218,8 +227,9 @@
 </div>
 <hr>
 
-<h4 style="margin-left:20%">Video content you could use:</h4>
-<div style="margin-left:35%;margin-right:30%">
+<h4 style="margin-left:45%">Related Media</h4>
+<br>
+<div id="yt" style="margin-left:35%;margin-right:30%">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/rLNH-jHfQZg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 

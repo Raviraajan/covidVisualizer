@@ -110,13 +110,14 @@ async function showVisulizations(){
 	config4.data.datasets[0].data=newCasesLabel;
 	myLineChart4.update();	
 
-
-	document.getElementById("myChart3").style.display="None";	
-	document.getElementById("myChart").style.display="None";	
-	document.getElementById("myChart2").style.display="None";	
-	document.getElementById("compareStatesTable").style.display="None";	
-	document.getElementById("pastFewDays").style.display="None";	
-	document.getElementById("fromToDate").style.display="None";	
+	/*
+		document.getElementById("myChart3").style.display="None";	
+		document.getElementById("myChart").style.display="None";	
+		document.getElementById("myChart2").style.display="None";	
+		document.getElementById("compareStatesTable").style.display="None";	
+		document.getElementById("pastFewDays").style.display="None";	
+		document.getElementById("fromToDate").style.display="None";	
+	*/
 	document.getElementById("myChart4").style.display="block";
 
 
@@ -188,6 +189,7 @@ function populateStates(){
 async function renderData(){
 	initStateData();
 	populateStates();
+	showVisulizations();
 	dateLabel=[];
 	casesArray=[];	
 	stateData = await getStateData();
@@ -266,7 +268,12 @@ function pickTwoDates(){
 function stateWiseData(){
 	
 	_stateName = stateMapping();
-	document.getElementById("stateWise").innerHTML=`${stateData.deathIncrease} people have died from Coronavirus in ${_stateName} in the past 24 hours, This brings the total number of deaths from the disease to ${stateData.death}, since the start of the pandemic. ${stateData.hospitalizedCurrently} people are currently in ${_stateName} hospitals with Covid-19 complications.${stateData.positive} people have now tested positive for Coronavirus in the state since testing began.`
+	//var para = document.createElement('p');
+	document.getElementById("stateWise").innerText="";
+	//para.innerText=`${stateData.deathIncrease} people have died from Coronavirus in ${_stateName} in the past 24 hours, This brings the total number of deaths from the disease to ${stateData.death}, since the start of the pandemic. ${stateData.hospitalizedCurrently} people are currently in ${_stateName} hospitals with Covid-19 complications.${stateData.positive} people have now tested positive for Coronavirus in the state since testing began.`;
+	//document.getElementById("stateWise").append(para);
+	document.getElementById("stateWise").innerHTML=`<h3>Article Text</h3><p>${stateData.deathIncrease} people have died from Coronavirus in ${_stateName} in the past 24 hours, This brings the total number of deaths from the disease to ${stateData.death}, since the start of the pandemic.</p><p> ${stateData.hospitalizedCurrently} people are currently in ${_stateName} hospitals with Covid-19 complications.</p><p>${stateData.positive} people have now tested positive for Coronavirus in the state since testing began.</p>`;
+	//document.getElementById("stateWise").innerHTML=`${stateData.deathIncrease} people have died from Coronavirus in ${_stateName} in the past 24 hours, This brings the total number of deaths from the disease to ${stateData.death}, since the start of the pandemic. ${stateData.hospitalizedCurrently} people are currently in ${_stateName} hospitals with Covid-19 complications.${stateData.positive} people have now tested positive for Coronavirus in the state since testing began.`
 
 }
 

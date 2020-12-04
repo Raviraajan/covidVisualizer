@@ -8,14 +8,16 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	
+	
 
 <style>
 
 #stateWise{
 
-	color:red;
+	color:black;
 	margin-left:25%;
 	margin-right:25%;
+	font-weight: 500;
 	
 }
 
@@ -59,6 +61,11 @@
 
 <body onload="renderData()">
 
+	<h4 style="margin-top:1.5%; margin-left:35%;margin-right:35%">The data powering these modules comes from <a href="https://covidtracking.com/data/api">here</a></h4>
+
+	<h5 style="margin-top:1.5%; margin-left:35%;margin-right:35%">Download the scripts and templates to make these modules on our <a href="https://github.com/nervecentergarage/structured-journalism-developer-community">github</a></h5>
+
+<hr>
 
 	<table id="data_table" style="display:none">
 	
@@ -73,7 +80,7 @@
 		<label>Choose a State:</label>
 	</td>	
 	<td>
-		<select id="stateName" onchange="getStateData()"></select>
+		<select id="stateName" onchange="getStateData(); showVisulizations()"></select>
 	</td>	
 	
 	<td>
@@ -86,32 +93,32 @@
 <table style="margin-left: auto; margin-right: auto;">
 	<tr>
 		<td>
-			<button class="btn btn-primary" onclick="showVisulizations()" style="margin-left:40%">Visualize</button>
+			<!--<button class="btn btn-primary" onclick="showVisulizations()" style="margin-left:40%">Visualize</button>-->
 		</td>
 		<td>
-			<button class="btn btn-primary" style="margin-top:10%; margin-left:30%" onclick="activateWorldWide()">Total Cases Visualization</button>
+			<!--<button class="btn btn-primary" style="margin-top:10%; margin-left:30%" onclick="activateWorldWide()">Total Cases Visualization</button>-->
 		</td>
 		<td>
-			<button class="btn btn-primary" style="margin-top:10%; margin-left:30%" onclick="compareStatesActivate()">Compare States</button>
+			<!--<button class="btn btn-primary" style="margin-top:10%; margin-left:30%" onclick="compareStatesActivate()">Compare States</button>-->
 		</td>
 	</tr>
 </table>
 </br>
 
 <div id="canvasEx4">
-	<canvas id="myChart4" style="display:none"></canvas>
+	<canvas id="myChart4" style="display:block"></canvas>
 </div>
 
 <!--<canvas id="myChart" style="display: block; width: 1000px; height: 707px;" width="1000" height="800" class="chartjs-render-monitor"></canvas>-->
 <div id="canvasEx">
-	<canvas id="myChart" style="display:none"></canvas>
+	<canvas id="myChart" style="display:block"></canvas>
 </div>
 
 <div id="canvasEx2">
-	<canvas id="myChart2" style="display:none"></canvas>
+	<canvas id="myChart2" style="display:block"></canvas>
 </div>
 
-<table id="fromToDate" style="margin-left:10%; margin-right:30%; display:None; float:left">
+<table id="fromToDate" style="margin-left:10%; margin-right:30%; display:block; float:left">
 	<tr>
 		<td>
 			<label>Start Date:</label>
@@ -132,7 +139,7 @@
 	</table>
 	
 	
-	<table id="pastFewDays" style="margin-left:74%;display:none">
+	<table id="pastFewDays" style="margin-left:74%;display:block">
 	<tr>
 		<td>
 			<button onclick="lastXDays(7)" class="btn btn-primary">Past 7 Days</button>
@@ -147,10 +154,10 @@
 	
 
 <div id="canvasEx3">
-	<canvas id="myChart3" style="display:none; margin-left:45%"></canvas>
+	<canvas id="myChart3" style="display:block; margin-left:45%"></canvas>
 </div>
 
-<table id="compareStatesTable" style="display:none; margin-left: 40%">
+<table id="compareStatesTable" style="display:block; margin-left: 40%">
 	<tr>
 		<td>
 			<label>State-1</label>
